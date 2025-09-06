@@ -1,0 +1,38 @@
+# Specification for the Digital Ocean App Platform.
+# This file defines the services, jobs, and environment for the sync application.
+name: shopify-promo-sync
+region: nyc3 # New York 3 region, can be changed based on user's preference.
+
+# Define the scheduled job for the full synchronization.
+jobs:
+- name: full-sync
+  # The schedule is in UTC. 7:05 AM (GMT-6) is 13:05 UTC.
+  # Cron format: Minute Hour Day-of-Month Month Day-of-Week
+  schedule: "5 13 * * *"
+
+  # Point to the GitHub repository for the source code.
+  # The user would replace this with their actual repository.
+  github:
+    repo: "user/shopify-promo-sync-repo"
+    branch: "main"
+
+  # Define the environment for the job.
+  # It will use Python and install dependencies from requirements.txt.
+  build_command: pip install -r requirements.txt
+  run_command: python3 sync_manager.py
+
+  # Environment variables for credentials.
+  # These should be set as encrypted variables in the Digital Ocean App Platform UI.
+  envs:
+  - key: PROMO_USER
+    value: "${PROMO_USER}"
+    type: SECRET
+  - key: PROMO_PASSWORD
+    value: "${PROMO_PASSWORD}"
+    type: SECRET
+  - key: SHOPIFY_URL
+    value: "${SHOPIFY_URL}"
+    type: SECRET
+  - key: SHOPIFY_TOKEN
+    value: "${SHOPIFY_TOKEN}"
+    type: SECRET

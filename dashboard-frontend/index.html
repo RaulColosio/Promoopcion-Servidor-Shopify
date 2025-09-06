@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Sincronización</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        h1, h2 {
+            color: #1a202c;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .status-box {
+            background-color: #e6f7f2;
+            border-left: 5px solid #38a169;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .status-box.error {
+            background-color: #fff5f5;
+            border-left-color: #e53e3e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f7fafc;
+        }
+        .config-section .form-group {
+            margin-bottom: 15px;
+        }
+        .config-section label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .config-section input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .config-section button {
+            background-color: #4a5568;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .config-section button:hover {
+            background-color: #2d3748;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #718096;
+            margin-top: 20px;
+            background-color: #f7fafc;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard de Sincronización - PromoOpción & Shopify</h1>
+
+        <section>
+            <h2>Estado Actual</h2>
+            <!-- This section would be populated dynamically via a JavaScript call to the backend API -->
+            <div class="status-box">
+                <strong>Última Sincronización Completa:</strong> 6 de Septiembre de 2025, 07:05:10 AM<br>
+                <strong>Estado:</strong> Completado con éxito<br>
+                <strong>Resultado:</strong> 5 productos nuevos creados, 0 errores.
+            </div>
+        </section>
+
+        <section>
+            <h2>Historial de Sincronizaciones</h2>
+            <!-- This table would be populated dynamically -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha y Hora</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-09-06 07:05:10</td>
+                        <td>Completa</td>
+                        <td>Éxito</td>
+                        <td>5 productos creados.</td>
+                    </tr>
+                    <tr>
+                        <td>2025-09-05 15:00:00</td>
+                        <td>Inventario</td>
+                        <td>Éxito</td>
+                        <td>125 SKUs actualizados.</td>
+                    </tr>
+                    <tr>
+                        <td>2025-09-05 07:05:00</td>
+                        <td>Completa</td>
+                        <td>Fallido</td>
+                        <td>Error de conexión con la API del proveedor.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="config-section">
+            <h2>Configuración de Precios</h2>
+            <div class="form-group">
+                <label for="discount-percentage">Porcentaje de Descuento de Proveedor (%)</label>
+                <input type="number" id="discount-percentage" value="23">
+            </div>
+            <div class="form-group">
+                <label for="margin-percentage">Margen de Ganancia sobre Venta (%)</label>
+                <input type="number" id="margin-percentage" value="40">
+            </div>
+            <button onclick="alert('Funcionalidad de guardado no implementada en este prototipo.')">Guardar Cambios</button>
+        </section>
+
+        <div class="note">
+            <p><strong>Nota de Arquitectura:</strong></p>
+            <p>Esta es una maqueta visual. En la implementación final:</p>
+            <ol>
+                <li>Esta página sería una aplicación (ej. React o Next.js) desplegada en <strong>Vercel</strong>.</li>
+                <li>Los datos (historial, estado, configuración) se obtendrían a través de llamadas JavaScript a una API segura expuesta por nuestra aplicación de backend en <strong>Digital Ocean</strong>.</li>
+                <li>Al "Guardar Cambios", se enviaría una petición a la API del backend para actualizar la configuración en una base de datos.</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
